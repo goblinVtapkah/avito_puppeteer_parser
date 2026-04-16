@@ -3,16 +3,25 @@
 ## Services:
 
 ### 1. backend/api:
+
 🧪 Stack: Nest;
+
 🚀Description: An API service for storing and serving parsed data.
 
+
 ### 2. parser:
+
 🧪 Stack: Puppeteer;
+
 🚀Description: Parsing chat data from Avito.
 
+
 ### 3. frontend:
+
 🧪 Stack: React;
+
 🚀Description: Displaying the parsed data.
+
 
 
 ## Start
