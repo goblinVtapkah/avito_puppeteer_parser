@@ -1,0 +1,24 @@
+{
+  "singleQuote": true,
+  "useTabs": true,
+  "tabWidth": 2,
+  "semi": false,
+  "printWidth": 100,
+  "importOrderParserPlugins": [
+    "typescript",
+    "decorators-legacy"
+  ],
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-jsdoc"
+  ],
+  "importOrder": [
+    "^.*.sass",
+    "<THIRD_PARTY_MODULES>",
+    "^@/",
+    "^./",
+    "^../"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
