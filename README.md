@@ -1,15 +1,16 @@
 # The project is a system with a microservices architecture consisting of 3 microservices:
 
+## Services:
 
-### 1. Service: backend/api;
+### 1. backend/api:
 	🧪 Stack: Nest;
 	🚀Description: An API service for storing and serving parsed data.
 
-### 2. Service: parser;
+### 2. parser:
 	🧪 Stack: Puppeteer;
 	🚀Description: Parsing chat data from Avito.
 
-### 3. Service: frontend;
+### 3. frontend:
 	🧪 Stack: React;
 	🚀Description: Displaying the parsed data.
 
