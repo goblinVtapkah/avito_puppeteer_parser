@@ -19,9 +19,9 @@
 
 Create a .env file in the root of the project based on example.env, updating the following variables:
 
-**AVITO_PHONE_NUMBER** (the phone number registered to the Avito account)
-**AVITO_PASSWORD** (the password for the Avito account)
-**ACCOUNT_NAME_FOR_CHAT_LISTEN** (the name of the account from which to listen for messages)
+- **AVITO_PHONE_NUMBER** (the phone number registered to the Avito account)
+- **AVITO_PASSWORD** (the password for the Avito account)
+- **ACCOUNT_NAME_FOR_CHAT_LISTEN** (the name of the account from which to listen for messages)
 
 Then run the command:
 `docker compose up --build`
@@ -42,15 +42,9 @@ Swagger documentation:
 
 ### 📡 API
 Chats:
-`GET /api/chat`
-*Get all chats.*
-
-`GET /api/chat/:chat_id`
-*Get chat details and all its messages.*
-
-`POST /api/chat/`
-*Save a chat.*
+- `GET /api/chat` *Get all chats.*
+- `GET /api/chat/:chat_id` *Get chat details and all its messages.*
+- `POST /api/chat/` *Save a chat.*
 
 Messages:
-`POST /api/message`
-*Add a new message.*
+- `POST /api/message` *Add a new message.*
