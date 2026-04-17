@@ -8,6 +8,7 @@ declare global {
 		env: {
 			VITE_API_URL?: string
 			VITE_ME_NAME?: string
+			VITE_WS_URL?: string
 		}
 	}
 }

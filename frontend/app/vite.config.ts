@@ -15,6 +15,6 @@ export default defineConfig({
 	},
 	server: {
 		host: true,
-		allowedHosts: ['localhost'],
+		allowedHosts: ['publicly-uplifting-antlion.cloudpub.ru'],
 	},
 })
