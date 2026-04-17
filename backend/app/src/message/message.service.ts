@@ -1,16 +1,20 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common'
 import { Chat } from 'src/chat/entities/chat.entity'
 import { DataSource, Repository } from 'typeorm'
 
 import { CreateMessageDto, UploadPullMessageDto } from './dto/create-message.dto'
 import { Message } from './entities/message.entity'
+import { ChatGateway } from 'src/chat/chat.gateway'
 
 @Injectable()
 export class MessageService {
 	private messageRepository: Repository<Message>
 	private chatRepository: Repository<Chat>
 
-	constructor(private dataSource: DataSource) {
+	constructor(
+		private dataSource: DataSource,
+		private chatGataway: ChatGateway,
+	) {
 		this.messageRepository = this.dataSource.getRepository(Message)
 		this.chatRepository = this.dataSource.getRepository(Chat)
 	}
@@ -20,6 +24,10 @@ export class MessageService {
 
 		if (!chat) throw new NotFoundException('Chat not found')
 
+		const messageExists = await this.messageRepository.findOneBy({ id: createMessageDto.id })
+
+		if (messageExists) throw new BadRequestException('Message id already exists')
+
 		const message = this.messageRepository.create({
 			id: createMessageDto.id,
 			text: createMessageDto.text,
@@ -27,6 +35,8 @@ export class MessageService {
 			created_at: createMessageDto.createdAt,
 			chat,
 		})
+
+		this.chatGataway.handleMessage({ chatId: chat.id, message })
 
 		return await this.messageRepository.save(message)
 	}
