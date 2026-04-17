@@ -5,6 +5,8 @@ services:
     build: ./frontend
     restart: unless-stopped
     container_name: frontend
+    env_file:
+      - .env
     ports:
       - "127.0.0.1:3000:3000"
     volumes:
@@ -25,20 +27,20 @@ services:
     depends_on:
       - postgres
 
-  # parser:
-  #   build: ./parser
-  #   restart: unless-stopped
-  #   container_name: parser
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - "127.0.0.1:3456:3456"
-  #   volumes:
-  #     - ./parser/app/src:/app/src
-  #     - ./parser/app/storage:/app/storage
-  #   depends_on:
-  #     - postgres
-  #     - backend
+  parser:
+    build: ./parser
+    restart: unless-stopped
+    container_name: parser
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:3456:3456"
+    volumes:
+      - ./parser/app/src:/app/src
+      - ./parser/app/storage:/app/storage
+    depends_on:
+      - postgres
+      - backend
 
   postgres:
     image: postgres:16

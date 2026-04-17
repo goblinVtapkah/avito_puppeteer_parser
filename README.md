@@ -31,6 +31,7 @@ Create a .env file in the root of the project based on example.env, updating the
 - **AVITO_PHONE_NUMBER** (the phone number registered to the Avito account)
 - **AVITO_PASSWORD** (the password for the Avito account)
 - **ACCOUNT_NAME_FOR_CHAT_LISTEN** (the name of the account from which to listen for messages)
+- **VITE_ME_NAME** (the name of the yout account)
 
 Then run the command:
 `docker compose up --build`

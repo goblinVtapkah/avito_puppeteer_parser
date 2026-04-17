@@ -40,7 +40,7 @@ export const getTargetChat = async (page: Page): Promise<TargetChat | null> => {
 					id: user.id,
 					name: user.name,
 				},
-				title: channel.context?.item?.value?.item?.title || ''
+				title: `${user.name} - ${(channel.context?.item?.value?.item?.title || '')}`
 			}
 		}
 	}

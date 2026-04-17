@@ -1,2 +1,20 @@
-const theme = createTheme({})
-//старт react mui typescript react tool kit проекта FSD файловая архитектура с объяснениями
+import { createTheme } from '@mui/material/styles'
+
+export const theme = createTheme({
+	components: {
+		MuiCssBaseline: {
+			styleOverrides: {
+				html: {
+					height: '100%',
+				},
+				body: {
+					height: '100%',
+					margin: 0,
+				},
+				'#root': {
+					height: '100%',
+				},
+			},
+		},
+	},
+})
