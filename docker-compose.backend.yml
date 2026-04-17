@@ -8,7 +8,7 @@ services:
     env_file:
       - .env
     ports:
-      - "127.0.0.1:4000:4000"
+      - "0.0.0.0:4000:4000"
     volumes:
       - ./backend/app/src:/app/src
     depends_on:
@@ -39,14 +39,6 @@ services:
       - "127.0.0.1:${POSTGRES_PORT:-5432}:${POSTGRES_PORT:-5432}"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-  
-  tunnel:
-    image: cloudflare/cloudflared:latest
-    container_name: tunnel_backend
-    command: tunnel --url http://backend:3000 --protocol http2
-    restart: unless-stopped
-    depends_on:
-      - backend
 
 volumes:
   postgres_data:

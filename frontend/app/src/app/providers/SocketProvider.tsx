@@ -10,7 +10,7 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
 		if (socketRef.current) return
 
 		const socket = io(
-			`ws://${import.meta.env.VITE_API_HOST || ''}:${import.meta.env.VITE_API_PORT || ''}`,
+			`ws://${import.meta.env.VITE_API_URL || ''}`,
 			{
 				withCredentials: true,
 				transports: ['websocket', 'polling'],
