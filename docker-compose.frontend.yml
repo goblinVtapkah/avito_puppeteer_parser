@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    container_name: frontend
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./frontend/app/src:/app/src
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --url http://frontend:3000
+    depends_on:
+      - frontend

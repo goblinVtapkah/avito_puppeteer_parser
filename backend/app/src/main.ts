@@ -39,6 +39,6 @@ async function bootstrap() {
 	SwaggerModule.setup('docs', app, document)
 
 	console.log(`Server is running on port ${process.env.BACKEND_PORT || 4000}`)
-	await app.listen(parseInt(process.env.BACKEND_PORT || '4000'))
+	await app.listen(parseInt(process.env.BACKEND_PORT || '4000'), '0.0.0.0')
 }
 bootstrap()
