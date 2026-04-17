@@ -1,12 +1,16 @@
 version: "3.9"
 
 services:
-  # frontend:
-  #   build: ./frontend
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     - backend
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    container_name: frontend
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./frontend/app/src:/app/src
+    depends_on:
+      - backend
 
   backend:
     build: ./backend
@@ -34,6 +38,7 @@ services:
   #     - ./parser/app/storage:/app/storage
   #   depends_on:
   #     - postgres
+  #     - backend
 
   postgres:
     image: postgres:16

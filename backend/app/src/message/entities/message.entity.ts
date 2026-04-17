@@ -13,6 +13,9 @@ export class Message {
 	@Column({ length: 255 })
 	author: string
 
+	@Column({ type: 'timestamp' })
+	created_at: Date
+
 	@ManyToOne(() => Chat, (chat) => chat.messages, { onDelete: 'CASCADE' })
 	@JoinColumn({ name: 'chat_id' })
 	chat: Chat

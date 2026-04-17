@@ -33,5 +33,5 @@ export interface GetChannelsResponse {
 export interface TargetChat {
 	id: string
 	profile: RefactorUser
-	title: string | null
+	title: string
 }

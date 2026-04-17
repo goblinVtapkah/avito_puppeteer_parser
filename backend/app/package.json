@@ -22,7 +22,6 @@
     "migration:revert": "typeorm migration:revert -d dist/database/dataSource.js"
   },
   "dependencies": {
-    "@nestia/sdk": "^11.0.2",
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",

@@ -5,6 +5,7 @@ import fs from 'fs'
 import { loginAvito } from './common/avitoAuthScripts'
 import { getMessageHistory, getTargetChat, newMessageListen } from './common/avitoChatsScripts'
 import { RefactorUser, TargetChat } from './types/chat.types'
+import { initializeChat } from './common/api'
 
 declare global {
 	interface Window {
@@ -96,8 +97,13 @@ declare global {
 		// получаем всю историю сообщений
 		const messages = await getMessageHistory(page, targetChat.id, profile, targetChat.profile)
 
+		// отправляем данные чата и его сообщения на бек
+		await initializeChat(targetChat.id, targetChat.title, messages)
+		console.log('[PARSER] chat initialize')
+
 		// включаем прослушку на новые сообщения
 		newMessageListen(page, targetChat, profile, messages)
+		console.log('[PARSER] chat listen')
 	}
 
 	// сохраняем куки

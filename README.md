@@ -46,10 +46,14 @@ Currently, the parser service listens to only one chat. It selects the first cha
 
 
 ## 🌐 Network
+### 🚀 WebApp React
+`http://localhost:3000`
+
+### 📡 API
+
 Swagger documentation:
 `http://localhost:4000/api/swagger`
 
-### 📡 API
 Chats:
 - `GET /api/chat` *Get all chats.*
 - `GET /api/chat/:chat_id` *Get chat details and all its messages.*

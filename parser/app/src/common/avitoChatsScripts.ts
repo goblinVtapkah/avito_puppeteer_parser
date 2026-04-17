@@ -1,10 +1,11 @@
 import { Page } from 'puppeteer'
 import { GetChannelsResponse, RefactorUser, TargetChat } from "../types/chat.types"
 import { GetMessagesResponse, RefactorMessage } from '../types/message.types'
+import { newMessage } from './api'
 
 declare global {
 	interface Window {
-		onMutation: () => void;
+		onMutation: () => void
 	}
 }
 
@@ -39,7 +40,7 @@ export const getTargetChat = async (page: Page): Promise<TargetChat | null> => {
 					id: user.id,
 					name: user.name,
 				},
-				title: channel.context?.item?.value?.item?.title ?? null
+				title: channel.context?.item?.value?.item?.title || ''
 			}
 		}
 	}
@@ -180,31 +181,33 @@ export const newMessageListen = async (
 
 		}, { messageIds, chatId: targetChat.id, me: profile, interlocutor: targetChat.profile })
 		
-		newMessages.forEach((message) => {
+		for (const message of newMessages) {
 			if (!messageIds.includes(message.id)) {
+				await newMessage(targetChat.id, message)
 				messages.push(message)
+				messageIds.push(message.id)
 			}
-		})
+		}
 	})
 
 	await page.evaluate(() => {
 		const waitForElement = (selector: string) => new Promise(resolve => {
-			const element = document.querySelector(selector);
-			if (element) return resolve(element);
+			const element = document.querySelector(selector)
+			if (element) return resolve(element)
 			
 			const observer = new MutationObserver(() => {
-				const element = document.querySelector(selector);
+				const element = document.querySelector(selector)
 				if (element) {
-					observer.disconnect();
-					resolve(element);
+					observer.disconnect()
+					resolve(element)
 				}
-			});
+			})
 			
 			observer.observe(document.body, {
 				childList: true,
 				subtree: true
-			});
-		});
+			})
+		})
 			
 		waitForElement('[class*=messages-history-module-scrollContent]').then((element) => {
 			const observer = new MutationObserver((mutations) => {
