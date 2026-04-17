@@ -6,8 +6,7 @@ import { App } from './app/App'
 declare global {
 	interface ImportMeta {
 		env: {
-			VITE_API_HOST?: string
-			VITE_API_PORT?: string
+			VITE_API_URL?: string
 			VITE_ME_NAME?: string
 		}
 	}
